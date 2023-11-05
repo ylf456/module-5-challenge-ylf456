@@ -21,3 +21,14 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+
+var currentDateAndTime = new Date()
+console.log(currentDateAndTime);
+var currentTime = currentDateAndTime.toTimeString();
+console.log(currentTime)
+
+initialCheckTimeAndRenderColor();
+initialRenderText();
+// var currentDate = getTime()
+// console.log(currentDate)

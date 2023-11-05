@@ -2,7 +2,7 @@
 
 ## Description
 
-TEXT
+This work day scheduler built utilizing jquery, bootstrap and javascript was created by Yilun Fan for study use.
 
 ## Installation
 
@@ -18,11 +18,13 @@ N/A
 
 ## License
 
-Please refer to the LICENSE in the repo.
+N/A
 
 ## Link to this application
 
+Deployed Application: https://ylf456.github.io/module-5-challenge-ylf456/
 
+Onlien Repo: https://github.com/ylf456/module-5-challenge-ylf456.git
 
 ## Screenshots
 
