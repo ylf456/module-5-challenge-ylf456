@@ -23,12 +23,6 @@ $(function () {
 });
 
 //enter code for displaying current date and time on the top of the page 
-
-// var currentDate = getTime()
-// console.log(currentDate)
-
- // TODO: Add code to display the current date in the header of the page.
-
 var DisplayTime = function(){
  currentDate =$('#currentDay')
 currentDate.text("Current Time: " + dayjs().format('MM/DD/YYYY HH:mm:ss'))
@@ -36,13 +30,33 @@ currentDate.text("Current Time: " + dayjs().format('MM/DD/YYYY HH:mm:ss'))
 DisplayTime();
 setInterval(DisplayTime,1000)
 
+var currentTime ="hour-" + dayjs().format('HH:mm:ss');
+var currentTimeWithoutms = "hour-" + dayjs().format('HH');
+var testtime = 'Hour-24'
+console.log(currentTime)
+console.log(currentTime < testtime);
 
-var initialRenderTimeBlock = function(){}
+var getCurrentElementindex = document.querySelectorAll('.time-block')
+console.log(getCurrentElementindex)
+
+
+ var initialRenderTimeBlock = function(){ 
+     getCurrentElementindex.forEach((colorRenderfunction) => {
+      var colorRenderfunction= function(){
+       var getCurrentId = getCurrentElementindex.getAttribute('id');
+       if (getCurrentId > currentTime) {getCurrentElementindex.attr('class','past')}
+       else if (getCurrentId = currentTimeWithoutms){getCurrentElementindex.attr('class','present')}
+       else if (getCurrentId < currentTime) {getCurrentElementindex.attr('class','future')}
+      }
+     })
+  }
+
+ 
+ initialRenderTimeBlock()
 
 
 
-
-var TimeBlockArray =[];
+ var TimeBlockArray =[];
 
 var timeblockinput = $('')
 
@@ -53,9 +67,13 @@ var timeBlockinput = {
 
 var saveInputToLocalStorage = function(event){
   event.preventDefault();
-
+  element = event.target;
+  var getCurrentElementindex = element.parent().attr('data-index')
+  console.log(getCurrentElementindex);
+  console.log(element);
+  var test = element.parent();
+  console.log(test)
 }
 
-var savebutton = $('<button>')
-
-savebutton.on('click','.btn', saveInputToLocalStorage);
+var saveButton = $('<button>')
+saveButton.on('click','.btn', saveInputToLocalStorage);
