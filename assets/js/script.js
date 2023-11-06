@@ -19,16 +19,43 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  // TODO: Add code to display the current date in the header of the page.
+ 
 });
 
+//enter code for displaying current date and time on the top of the page 
 
-var currentDateAndTime = new Date()
-console.log(currentDateAndTime);
-var currentTime = currentDateAndTime.toTimeString();
-console.log(currentTime)
-
-initialCheckTimeAndRenderColor();
-initialRenderText();
 // var currentDate = getTime()
 // console.log(currentDate)
+
+ // TODO: Add code to display the current date in the header of the page.
+
+var DisplayTime = function(){
+ currentDate =$('#currentDay')
+currentDate.text("Current Time: " + dayjs().format('MM/DD/YYYY HH:mm:ss'))
+}
+DisplayTime();
+setInterval(DisplayTime,1000)
+
+
+var initialRenderTimeBlock = function(){}
+
+
+
+
+var TimeBlockArray =[];
+
+var timeblockinput = $('')
+
+var timeBlockinput = {
+  Text: 1 ,
+  index: 1,
+};
+
+var saveInputToLocalStorage = function(event){
+  event.preventDefault();
+
+}
+
+var savebutton = $('<button>')
+
+savebutton.on('click','.btn', saveInputToLocalStorage);
