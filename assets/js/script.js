@@ -19,16 +19,61 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  // TODO: Add code to display the current date in the header of the page.
+ 
 });
 
+//enter code for displaying current date and time on the top of the page 
+var DisplayTime = function(){
+ currentDate =$('#currentDay')
+currentDate.text("Current Time: " + dayjs().format('MM/DD/YYYY HH:mm:ss'))
+}
+DisplayTime();
+setInterval(DisplayTime,1000)
 
-var currentDateAndTime = new Date()
-console.log(currentDateAndTime);
-var currentTime = currentDateAndTime.toTimeString();
+var currentTime ="hour-" + dayjs().format('HH:mm:ss');
+var currentTimeWithoutms = "hour-" + dayjs().format('HH');
+var testtime = 'Hour-24'
 console.log(currentTime)
+console.log(currentTime < testtime);
 
-initialCheckTimeAndRenderColor();
-initialRenderText();
-// var currentDate = getTime()
-// console.log(currentDate)
+var getCurrentElementindex = document.querySelectorAll('.time-block')
+console.log(getCurrentElementindex)
+
+
+ var initialRenderTimeBlock = function(){ 
+     getCurrentElementindex.forEach((colorRenderfunction) => {
+      var colorRenderfunction= function(){
+       var getCurrentId = getCurrentElementindex.getAttribute('id');
+       if (getCurrentId > currentTime) {getCurrentElementindex.attr('class','past')}
+       else if (getCurrentId = currentTimeWithoutms){getCurrentElementindex.attr('class','present')}
+       else if (getCurrentId < currentTime) {getCurrentElementindex.attr('class','future')}
+      }
+     })
+  }
+
+ 
+ initialRenderTimeBlock()
+
+
+
+ var TimeBlockArray =[];
+
+var timeblockinput = $('')
+
+var timeBlockinput = {
+  Text: 1 ,
+  index: 1,
+};
+
+var saveInputToLocalStorage = function(event){
+  event.preventDefault();
+  element = event.target;
+  var getCurrentElementindex = element.parent().attr('data-index')
+  console.log(getCurrentElementindex);
+  console.log(element);
+  var test = element.parent();
+  console.log(test)
+}
+
+var saveButton = $('<button>')
+saveButton.on('click','.btn', saveInputToLocalStorage);
