@@ -76,12 +76,12 @@ var saveInputToLocalStorageHandler = function (event) {
   event.preventDefault();
   var findparentIdofButton = $(this).parent().attr("id")
   var findTextofTimeBlock = $(this).siblings(".description").val()
-  localStorage.setItem(findparentIdofButton, JSON.stringify(findTextofTimeBlock));
+  localStorage.setItem(findparentIdofButton, findTextofTimeBlock);
 }
 
 var initialRenderTimeBlockText = function () {
   for (i = 9; i < 18; i++) {
-    $("#hour-" + i, ".description").val(JSON.parse(localStorage.getItem("hour-"+i)))
+    $("#hour-" + i + " .description").val(localStorage.getItem("hour-"+i))
   }
 }
 
