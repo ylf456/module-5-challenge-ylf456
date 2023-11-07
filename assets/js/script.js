@@ -19,53 +19,95 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
- 
+
 });
 
 //enter code for displaying current date and time on the top of the page 
-var DisplayTime = function(){
- currentDate =$('#currentDay')
-currentDate.text("Current Time: " + dayjs().format('MM/DD/YYYY HH:mm:ss'))
+var DisplayTime = function () {
+  currentDate = $('#currentDay')
+  currentDate.text("Current Time: " + dayjs().format('MM/DD/YYYY HH:mm:ss'))
 }
 DisplayTime();
-setInterval(DisplayTime,1000)
+setInterval(DisplayTime, 1000)
 
-var currentTime ="hour-" + dayjs().format('HH:mm:ss');
-var currentTimeWithoutms = "hour-" + dayjs().format('HH');
-var testtime = 'Hour-24'
-console.log(currentTime)
-console.log(currentTime < testtime);
+/*
+var getCurrentElement = document.getElementsByClassName('time-block')
+console.log(getCurrentElement) //logs a list of elements that have class = .timeblock
 
-var getCurrentElementindex = document.querySelectorAll('.time-block')
-console.log(getCurrentElementindex)
+for (i = 0; i < 9; i++) {
+  var getCurrentElementID = getCurrentElement[i].getAttribute('id')
+  console.log(getCurrentElementID); // logs a list of string of the id(s) of the .timeblock elements so it can be parsed to have only numbers to be used for time comparsion
+  console.log(typeof(getCurrentElementID)); //logs string
+  
+  var matchCurrentElementIdNumber = getCurrentElementID.replace('hour-','');
+  console.log(matchCurrentElementIdNumber); //logs only number
+  console.log(typeof(matchCurrentElementIdNumber)) // logs string
+
+  var changeIdStringtoNumber = +matchCurrentElementIdNumber; //change a string to number
+  console.log(typeof(changeIdStringtoNumber)); //logs number
+}
+*/
 
 
- var initialRenderTimeBlock = function(){ 
+//adding code that will render the color of the time-block when initiated
+/* var initialRenderTimeBlock = function(){ 
      getCurrentElementindex.forEach((colorRenderfunction) => {
       var colorRenderfunction= function(){
        var getCurrentId = getCurrentElementindex.getAttribute('id');
-       if (getCurrentId > currentTime) {getCurrentElementindex.attr('class','past')}
+       if (getCurrentId > currentTimeWithoutms) {getCurrentElementindex.attr('class','past')}
        else if (getCurrentId = currentTimeWithoutms){getCurrentElementindex.attr('class','present')}
-       else if (getCurrentId < currentTime) {getCurrentElementindex.attr('class','future')}
+       else if (getCurrentId < currentTimeWithoutms) {getCurrentElementindex.attr('class','future')}
       }
      })
   }
+*/
 
- 
- initialRenderTimeBlock()
+var currentTime = "hour-" + dayjs().format('HH:mm:ss');
+var currentTimeWithOnlyNumber = dayjs().format('HH');
+var currentTimeParsed = +currentTimeWithOnlyNumber;
+console.log(currentTimeParsed)
+
+//$(this) refers to the current .time-block element within the loop.
+var initialRenderTimeBlockColor = function(){
+$('.time-block').each(function () {
+  var divElement = $(this).find('div');
+  console.log(divElement);
+  var getCurrentElementID = $(this).attr("id")
+  var parsedCurrentElementID = +getCurrentElementID.replace("hour-", "")
+  if (parsedCurrentElementID < currentTimeParsed) {
+    $(this).addClass("past");
+    $(this).removeClass("present");
+    $(this).removeClass("future");
+  } else if (parsedCurrentElementID === currentTimeParsed) {
+    $(this).addClass("present");
+    $(this).removeClass("past");
+    $(this).removeClass("future")
+  } else if (parsedCurrentElementID > currentTimeParsed) {
+    $(this).addClass("future");
+    $(this).removeClass("past")
+    $(this).removeClass("present");
+  }
+  return;
+})
+}
+
+initialRenderTimeBlockColor();
 
 
 
- var TimeBlockArray =[];
+
+var TimeBlockArray = [];
 
 var timeblockinput = $('')
 
 var timeBlockinput = {
-  Text: 1 ,
+  Text: 1,
   index: 1,
 };
 
-var saveInputToLocalStorage = function(event){
+document.getel
+
+var saveInputToLocalStorage = function (event) {
   event.preventDefault();
   element = event.target;
   var getCurrentElementindex = element.parent().attr('data-index')
@@ -76,4 +118,4 @@ var saveInputToLocalStorage = function(event){
 }
 
 var saveButton = $('<button>')
-saveButton.on('click','.btn', saveInputToLocalStorage);
+saveButton.on('click', '.btn', saveInputToLocalStorage);
