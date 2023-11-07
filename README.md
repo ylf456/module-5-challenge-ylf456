@@ -25,7 +25,7 @@ N/A
 
 Deployed Application: https://ylf456.github.io/module-5-challenge-ylf456/
 
-Onlien Repo: https://github.com/ylf456/module-5-challenge-ylf456.git
+Online Repo: https://github.com/ylf456/module-5-challenge-ylf456.git
 
 ## Screenshots
 
